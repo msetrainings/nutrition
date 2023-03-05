@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Food Tracker | Food Details</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='theme.css') }}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{ url_for('index') }}">Nutrition</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('food') }}">Add Food</a></li>
+            <li class="active"><a href="{{ url_for('details') }}">Food Details</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container theme-showcase col-sm-6 col-sm-offset-3" role="main">
+
+      <div class="row">
+        <div>
+
+          <div class="panel panel-primary">
+
+            <div class="panel-heading">
+              <h3 class="panel-title">Details</h3>
+            </div>
+
+            <div class="panel-body">              
+              <h4>{{ message }}</h4>
+              {% for food in food_results %}
+              <ul class="nav nav-pills" role="tablist">
+                <li class="active"><a href="{{ url_for('food_item', name=food.name) }}">{{ food.name }}</a></li>
+                <li><a>Protein: <span class="badge">{{ food.protein }}</span></a></li>
+                <li><a>Carbohydrates: <span class="badge">{{ food.carbohydrates }}</span></a></li>
+                <li><a>Fat: <span class="badge">{{ food.fat }}</span></a></li>
+                <li><a>Calories: <span class="badge">{{ food.calories }}</span></a></li>
+              </ul>
+              <div class="page-header"></div>
+              {% endfor %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+
+</html>
